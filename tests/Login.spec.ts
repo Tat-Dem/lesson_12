@@ -36,7 +36,6 @@ test.describe('Login tests', async () => {
     })
     expect(responseLogin.status()).toBe(StatusCodes.OK)
 
-
     const responseCreateOrder = await request.post(`https://backend.tallinn-learning.ee/orders`, {
       data: OrderDto.generateRandomOrderDto(),
       headers: {
@@ -45,7 +44,7 @@ test.describe('Login tests', async () => {
     })
     expect(responseCreateOrder.status()).toBe(StatusCodes.OK)
 
-    const createOrderResponse = await responseCreateOrder.json();
+    const createOrderResponse = await responseCreateOrder.json()
     expect(createOrderResponse.id).toBeDefined()
     expect(createOrderResponse.id).toBeGreaterThan(0)
 
