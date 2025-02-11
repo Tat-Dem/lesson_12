@@ -3,6 +3,10 @@ import { LoginDTO } from '../tests/DTO/LoginDTO'
 import { StatusCodes } from 'http-status-codes'
 import { OrderDto} from '../tests/DTO/OrderDto'
 
+const serverURL = "https://backend.tallinn-learnin.ee";
+const loginPath = "login/student";
+const orderPath = "orders";
+
 
 export class ApiClient {
   static instance: ApiClient;
@@ -24,12 +28,12 @@ export class ApiClient {
 
   async requestJwt(): Promise<void> {
     console.log("Requesting JWT");
-    const responseLogin = await this.request.post ('https://backend.tallinn-learning.ee/login/student', {
+    const responseLogin = await this.request.post (`${serverURL}${loginPath}`, {
       data: LoginDTO.createLoginWithCorrectData(),
     });
 
     if (responseLogin.status() !== StatusCodes.OK) {
-      throw new Error(`Authorization failed: ${responseLogin.status()}`)
+      throw new Error(`Authorization failed: ${responseLogin.status()}`);
     }
 
     this.jwt = await responseLogin.text();
@@ -44,7 +48,7 @@ export class ApiClient {
   }
   public async createOrder(): Promise<{ id: string, orderData: any}>{
     const orderData = OrderDto.generateRandomOrderDto();
-    const response = await this.request.post('https://backend.tallinn-learning.ee/orders', {
+    const response = await this.request.post(`${serverURL}${orderPath}`, {
       data: orderData,
       headers: this.getHeaders(),
     });

@@ -32,7 +32,7 @@ test.describe('Login tests', async () => {
       `https://backend.tallinn-learning.ee/orders/${orderId}`,
       {
         headers: {
-          Authorization: ' Bearer ' + (await responseLogin.text()),
+          Authorization: 'Bearer ' + (await responseLogin.text()),
         },
       },
     )
@@ -53,7 +53,7 @@ test.describe('Login tests', async () => {
     const responseCreateOrder = await request.post(`https://backend.tallinn-learning.ee/orders`, {
       data: orderData,
       headers: {
-        Authorization: ' Bearer ' + (await responseLogin.text()),
+        Authorization: 'Bearer ' + (await responseLogin.text()),
       },
     })
     console.log(await responseCreateOrder.text())
