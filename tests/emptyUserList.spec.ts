@@ -7,7 +7,7 @@ test.describe('TL-14-5 get all users returns empty array test', () => {
     const allUsersResponse = await request.get('http://localhost:3000')
     const users: UserDTO[] = await allUsersResponse.json()
     for (const user of users) {
-      await request.delete(`http://localhost:3000/${user.id}`)
+      await request.delete(`/users/${user.id}`)
     }
   })
 
