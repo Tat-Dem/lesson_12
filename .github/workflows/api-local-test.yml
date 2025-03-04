@@ -2,8 +2,7 @@ name: Api local tests
 
 on:
   push:
-    branches:
-      [master, develop]
+    branches: [master, develop]
   pull_request:
     branches:
       - master

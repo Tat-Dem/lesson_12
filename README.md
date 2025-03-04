@@ -5,38 +5,43 @@ This API provides basic user management functionality using Express, supporting 
 It includes a Docker setup for easy development and deployment.
 
 ## Prerequisites
+
 - Docker
 - Docker Compose
 - Node.js
 - npm
 
 ## How to run
-```npm run dev```
-or run with docker-compose file: 
-```docker-compose up -d```
+
+`npm run dev`
+or run with docker-compose file:
+`docker-compose up -d`
 
 ## API Endpoints
 
 Below are the available API endpoints with example `curl` commands:
 
 ### 1. Get All Users
+
 Retrieve a list of all users as array. Initially, this will return an empty array until users are added.
 
-```curl -X GET http://localhost:3000/users```
+`curl -X GET http://localhost:3000/users`
 
 ### 2. Create User
+
 Create a new user with a random name, email, and phone number.
 
-```curl -X POST http://localhost:3000/users```
+`curl -X POST http://localhost:3000/users`
 
 If the user is successfully created:
 
 HTTP/1.1 201 Created
 
 ### 3. Get User by ID
+
 Retrieve a user by their ID.
 
-```curl -X GET http://localhost:3000/users/:id```
+`curl -X GET http://localhost:3000/users/:id`
 
 If the user is found:
 HTTP/1.1 200 OK
@@ -45,9 +50,10 @@ If the user is not found:
 HTTP/1.1 404 Not Found
 
 ### 4. Delete User by ID
+
 Delete a user by their ID.
 
-```curl -X DELETE http://localhost:3000/users/:id```
+`curl -X DELETE http://localhost:3000/users/:id`
 
 If the user is successfully deleted:
 

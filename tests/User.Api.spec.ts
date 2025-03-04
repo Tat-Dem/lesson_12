@@ -8,7 +8,6 @@ test.describe('User management app tests', async () => {
     await request.delete(`http://localhost:3000/users/${id}`)
   }
 
-
   test('TL-14-1 create user test', async ({ request }) => {
     const creationResponse = await request.post('http://localhost:3000/users')
     expect(creationResponse.status()).toBe(StatusCodes.CREATED)
@@ -43,7 +42,6 @@ test.describe('User management app tests', async () => {
     await request.post('http://localhost:3000/users')
     const allUsersResponse = await request.get('http://localhost:3000/users')
     const json: UserDTO[] = await allUsersResponse.json()
-
 
     expect(json.length).toBe(3)
   })
