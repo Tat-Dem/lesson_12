@@ -4,7 +4,7 @@ import { UserDTO } from './DTO/UserDTO'
 
 test.describe('TL-14-5 get all users returns empty array test', () => {
   test.beforeEach(async ({ request }) => {
-    const allUsersResponse = await request.get('http://localhost:3000')
+    const allUsersResponse = await request.get('http://localhost:3000/users')
     const users: UserDTO[] = await allUsersResponse.json()
     for (const user of users) {
       await request.delete(`/users/${user.id}`)
