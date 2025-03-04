@@ -23,7 +23,6 @@ test.describe('User management app tests', async () => {
     const foundUser = UserDTO.serializeResponse(await searchResponse.json())
 
     expect(foundUser).toStrictEqual(createdUser)
-
     await clearUser(createdUser.id, request)
   })
 
