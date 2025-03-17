@@ -62,3 +62,4 @@ jobs:
         run: |
           echo "Running rest API tests..."
           npx playwright test tests/GetOrder.spec.ts tests/PostOrder.spec.ts tests/simple-solution-api.spec.ts
+          
