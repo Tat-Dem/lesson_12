@@ -38,7 +38,7 @@ jobs:
           echo "Running TypeScript compiler to check for type issues..."
           npx tsc --noEmit
 
-      - name: Run Playwright API tests (all tests)
+      - name: Run Playwright API tests (excluding local tests)
         run: |
           echo "Running Playwright to execute API tests..."
           npx playwright test

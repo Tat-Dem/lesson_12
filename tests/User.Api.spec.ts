@@ -11,8 +11,10 @@ test.describe('User management app tests', async () => {
   test('TL-14-1 create user test', async ({ request }) => {
     const creationResponse = await request.post('http://localhost:3000/users')
     expect(creationResponse.status()).toBe(StatusCodes.CREATED)
+
     const createdUser = UserDTO.serializeResponse(await creationResponse.json())
     expect(createdUser.id).toBeDefined()
+
     await clearUser(createdUser.id, request)
   })
 

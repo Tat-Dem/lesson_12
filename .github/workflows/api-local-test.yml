@@ -49,3 +49,8 @@ jobs:
         run: |
           echo "Running Playwright to execute local API tests..."
           npx playwright test tests/User.Api.spec.ts --workers=1
+      - name: Stop Docker Compose
+        uses: hoverkraft-tech/compose-action@v2.0.1
+        with:
+          compose-file: ./docker-compose.yaml
+          down-flags: -v
