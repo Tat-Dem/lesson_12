@@ -2,7 +2,8 @@ name: Base CI pipeline
 
 on:
   push:
-    branches: [master, develop]
+    branches:
+      [master, develop]
   pull_request:
     branches:
       - master
@@ -31,7 +32,7 @@ jobs:
       - name: Run ESLint check
         run: |
           echo "Running ESLint to check for linting issues..."
-          npm run lint
+          npm run lint 
 
       - name: Run TypeScript compile check
         run: |
@@ -49,13 +50,13 @@ jobs:
       - name: Set up Docker Compose
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          compose-file: './docker-compose.yml'
+          compose-file: ./docker-compose.yaml
           up-flags: -d
 
       - name: Run local API tests
         run: |
           echo "Running local API tests..."
-          npx playwright test tests/emptyUserList.spec.ts --workers=1
+          npx playwright test tests/User.Api.spec.ts --workers=1
 
       - name: Run rest API tests
         run: |
