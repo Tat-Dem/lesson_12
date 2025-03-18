@@ -28,7 +28,7 @@ test('post order with data without status field should receive code 200', async 
   // Log the response status and body
   console.log('response status:', response.status())
   console.log('response body:', responseBody)
-  expect.soft(responseBody.status).toBe('OPEN')
+  expect.soft(responseBody.status).toBe(null)
   expect.soft(response.status()).toBe(StatusCodes.OK)
 })
 

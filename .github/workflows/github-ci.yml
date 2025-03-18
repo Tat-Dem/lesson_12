@@ -1,8 +1,9 @@
-name: Login tests
+name: Base CI pipeline
 
 on:
   push:
-    branches: [master, develop]
+    branches:
+      [master, develop]
   pull_request:
     branches:
       - master
@@ -31,17 +32,34 @@ jobs:
       - name: Run ESLint check
         run: |
           echo "Running ESLint to check for linting issues..."
-          npm run lint
+          npm run lint 
 
       - name: Run TypeScript compile check
         run: |
           echo "Running TypeScript compiler to check for type issues..."
           npx tsc --noEmit
 
-      - name: Run Playwright API tests
+      - name: Run ENV variables tests
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
-          echo "Running Playwright to execute API tests..."
+          echo "Running ENV variables tests..."
           npx playwright test tests/Login.spec.ts
+
+      - name: Set up Docker Compose
+        uses: hoverkraft-tech/compose-action@v2.0.1
+        with:
+          compose-file: ./docker-compose.yaml
+          up-flags: -d
+
+      - name: Run local API tests
+        run: |
+          echo "Running local API tests..."
+          npx playwright test tests/User.Api.spec.ts --workers=1
+
+      - name: Run rest API tests
+        run: |
+          echo "Running rest API tests..."
+          npx playwright test tests/GetOrder.spec.ts tests/PostOrder.spec.ts tests/simple-solution-api.spec.ts
+          
